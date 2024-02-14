@@ -1,0 +1,16 @@
+// Berechnung des Maximums von a und b
+// 
+// Registerbelegung
+// Eingabe: 
+//   R1 = a
+//   R2 = b
+// Ausgabe:
+//   R0 = max(a, b)
+
+       LOAD 1
+       SUB 2
+       JZERO b
+       LOAD 1
+       GOTO Ende
+b:     LOAD 2
+Ende:  END

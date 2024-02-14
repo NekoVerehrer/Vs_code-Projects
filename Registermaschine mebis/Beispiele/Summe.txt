@@ -1,0 +1,12 @@
+// Summe a + b zweier Zahlen a und b
+//
+// Registerbelegung
+// Eingabe:
+//   R1 = a
+//   R2 = b
+// Ausgabe: 
+//   R0 = a + b
+
+    LOAD 1
+    ADD  2
+    END

@@ -1,0 +1,32 @@
+// Das letzte Element einer Liste wird gesucht
+//
+// Ein Listenelement besteht aus einer Zahl und einem Index für das nächste Element.
+// Eine Zahl steht in einem Registern R2i mit geradem Index, ein Index im darauffolgenden Register R2i+1
+// Das Ende der Liste wird mit dem Index 0 gekennzeichnet.
+//
+// Registerbelegung
+// Eingabe:
+//   R1 = Index auf das erste Listenelement
+//   R4...  die Liste
+// Verarbeitung
+//   R2 Zahl des aktuellen Listenelements
+//   R3 Index des nächsten Listenelements
+// Ausgabe:
+//   R2 = Zahl im letzten Element
+// Beispiel:
+//   R1 = 4, R4 = 71, R5 = 12, R12 = 33, R13 = 8, R8 = 45, R9 = 0
+
+       LOAD   1
+       STORE  3
+Begin: JZERO  Ende
+       LOAD  *3
+       STORE  2
+       LOAD   3
+       ADD   #1
+       STORE  3
+       LOAD  *3
+       STORE  3
+       GOTO   Begin
+Ende:  END
+    
+    
