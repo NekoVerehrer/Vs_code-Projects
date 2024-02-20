@@ -1,5 +1,0 @@
-// Die überall undefinierte Funktion
-
-A:  GOTO  B
-B:  GOTO  A
-    END
