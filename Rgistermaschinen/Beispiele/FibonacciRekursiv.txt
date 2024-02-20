@@ -1,0 +1,56 @@
+// Umsetzung der Rekursion durch Einsatz eines Stapels
+// bei der Berechnung der Fibonaccifolge
+// fib(0) = 0, fib(1) = 1
+// fib(n) = fib(n-1) + fib(n-2)  
+//
+// Registerbelegung
+// Eingabe: 
+//   R1 = n
+// Verarbeitung:
+//   R2 = Hilfsspeicher
+//   R3 = Zwischen- und Endergebnis
+//   R4 = Index in Stapel
+//   R5 = Ende des Stapels
+//   R6... Stapel
+ 
+// Initialisierung
+            LOAD  #0
+            STORE  3
+            LOAD  #6
+            STORE  4
+            LOAD  #7
+            STORE  5
+            LOAD   1
+            STORE *4
+
+// Abbau der Rekursion durch Aufbau eines Stapels
+Abbau:      LOAD  *4
+            SUB   #1
+            JNZERO  Rekursiv 
+            LOAD  *4
+            JZERO  Weiter  // fib(0) = 0
+            LOAD   3
+            ADD   #1	   // addiere fib(1) = 1
+            STORE  3
+            GOTO   Weiter
+        
+Rekursiv:   STORE *5  // fib(n) = fib(n-1) + fib(n-2)
+            STORE  2
+            LOAD   5
+            ADD   #1
+            STORE  5
+            LOAD   2
+            SUB   #1
+            STORE *5
+            LOAD   5
+            ADD   #1
+            STORE  5
+        
+Weiter:     LOAD   4
+            ADD   #1
+            STORE  4
+            LOAD   5
+            SUB    4
+            JNZERO Abbau
+            END     
+       
