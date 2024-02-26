@@ -3,16 +3,23 @@ package main
 import (
 	"fmt"
 	"math/rand"
+
+	//"strconv"
 	"time"
 )
 
-var h int = 0
-var b int = 0
-var bt int = 0
+var h int = 10
+
+const (
+	time_b1  = 10
+	time_b2  = 10
+	time_bt1 = 10
+	time_bt2 = 10
+)
 
 func main() {
-	TrinkenTimer()
-	HungerTimer()
+	go TrinkenTimer(5)
+	HungerTimer(5)
 }
 func LebenTimer() {
 	h--
@@ -22,33 +29,35 @@ func LebenTimer() {
 	if h == 0 {
 		fmt.Println("ich bin tot")
 	}
-	fmt.Println(h)
+	fmt.Println("Leben:", h)
 }
-func TrinkenTimer() {
-	for i := 0; i < bt; bt-- {
+func TrinkenTimer(bt int) {
+	for bt > 0 {
 		if bt <= 2 {
 			fmt.Println("ich habe durst")
 		}
 		if bt == 0 {
 			LebenTimer()
 		}
-		Rand := rand.Intn(180) + 180
+		Rand := rand.Intn(time_bt2) + time_bt1
 		time.Sleep(time.Duration(Rand) * time.Second)
-		fmt.Println(bt)
+		fmt.Println("Durst:", bt)
+		bt--
 	}
 
 }
-func HungerTimer() {
-	for i := 0; i < b; b-- {
+func HungerTimer(b int) {
+	for b > 0 {
 		if b <= 2 {
 			fmt.Println("ich habe hunger")
 		}
-		if bt == 0 {
+		if b == 0 {
 			LebenTimer()
 		}
-		Rand := rand.Intn(150) + 30
+		Rand := rand.Intn(time_b2) + time_b1
 		time.Sleep(time.Duration(Rand) * time.Second)
-		fmt.Println(b)
+		fmt.Println("Hunger:", b)
+		b--
 	}
 
 }
