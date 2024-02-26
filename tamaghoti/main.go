@@ -87,12 +87,12 @@ func (t *Tamagotchi) Give_a_drink() {
 	}
 }
 func (t *Tamagotchi) Life_down() {
-	t.Thirst--
+	t.Life--
 	if t.Life <= 2 {
 		fmt.Println("ich sterbe")
 	}
-	if t.Thirst <= 0 {
-		t.Thirst = 0
+	if t.Life <= 0 {
+		t.Life = 0
 		fmt.Println("ich bin tot")
 	}
 }
@@ -101,14 +101,17 @@ func (t *Tamagotchi) PrintStatus() {
 	fmt.Println("----------------------------------------------------------------------")
 	fmt.Printf("Name: %s\n", t.Name)
 	fmt.Printf("Hunger: %d\n", t.Hunger)
-	fmt.Printf("Thirst: %d\n", t.Hunger)
-	fmt.Printf("Life: %d\n", t.Hunger)
+	fmt.Printf("Thirst: %d\n", t.Thirst)
+	fmt.Printf("Life: %d\n", t.Life)
 }
 
 // TIMER: ---------------------------------------------------------------------------------------------
 
 func (t *Tamagotchi) ThirstTimer() {
-	for t.Life > 0 {
+	for {
+		if t.Life == 0 {
+			return
+		}
 		if t.Thirst > 0 {
 			t.Thirst--
 			if t.Thirst <= 2 {
@@ -125,7 +128,10 @@ func (t *Tamagotchi) ThirstTimer() {
 	}
 }
 func (t *Tamagotchi) HungerTimer() {
-	for t.Life > 0 {
+	for {
+		if t.Life == 0 {
+			return
+		}
 		if t.Hunger > 0 {
 			t.Hunger--
 			if t.Hunger <= 2 {
