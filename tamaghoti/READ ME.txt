@@ -1,1 +1,5 @@
 go run .\tamaghoti\main.go
+
+git add .      
+git commit -m "fertigstellung Tamagotchi"
+git push
